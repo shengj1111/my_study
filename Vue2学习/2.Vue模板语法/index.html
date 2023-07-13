@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="/vue包/vue.js">
+
+</script>
+<!-- 
+    1.指令语法就是以 v- 开头，
+    2.指令语法用来解析标签（包括事件绑定，标签内容，标签属性等）
+
+    3.一个data事件中可以又多个值，每个值可以拥有多个值（相当于一个对象里面全是对象）
+
+    4. v-bind: 就是绑定事件，可以将一个常量转换为js的表达式
+        (1). 例如将 a  标签里面的 href 属性的url改成了一个变量(https://cn.vuejs.org/)
+ -->
+
+<body>
+    <div class="root">
+        <h1>插值语法</h1>
+        <h3>你好，{{username}}</h3>
+        <hr>
+        <h1>指令语法</h1>
+        <a v-bind:href="web.url">点我去{{web.webName}}官网</a>
+        <a v-bind:href="web.url">点我去{{web.webName}}官网</a>
+    </div>
+</body>
+
+<script>
+    var a = new Vue({
+        el: '.root',
+        data: {
+            username: 'jack',
+            web: {
+                url:"https://cn.vuejs.org/",
+                webName:'Vue'
+            }
+        }
+
+    })
+</script>
+
+</html>

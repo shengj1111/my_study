@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/vue包/vue.js"></script>
+</head>
+<body>
+  <div class="root">
+    <h2>当前的n值为{{n}}</h2>
+    <h2 >n放大十倍的<span v-big="n"></span></h2>
+    <button @click="n++">点我n++</button>
+  </div>
+</body>
+<script>
+  new Vue({
+    el:'.root',
+    data:{
+      n:1
+    },
+    directives:{
+      big(element,binding){
+        //获取两个值，一个是标签元素（element） 一个是事件binding的属性
+        console.log(binding);
+        element.innerText = binding.value*10
+      }
+    }
+  })
+</script>
+</html>

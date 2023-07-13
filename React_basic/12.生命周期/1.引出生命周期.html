@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <!-- React核心包 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 操作dom的包 -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- babel,转化语法 -->
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    class Life extends React.Component {
+      state = { opacity: 0.5 }
+
+      death = () => {
+        // 销毁组件函数 ReactDOM.unmountComponentAtNode 这个是销毁在哪个节点的组件
+        ReactDOM.unmountComponentAtNode(document.querySelector('.text'))
+      }
+
+      // 挂载生命周期函数  类似于Vue的mounted
+      componentDidMount() {
+        // 开启定时器
+        this.timer = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) opacity = 1
+          this.setState({ opacity })
+        }, 200)
+      }
+      // 销毁之前生命周期函数  类似于Vue的beforeDistory
+      componentWillUnmount() {
+        clearInterval(this.timer)
+      }
+      // 初始化渲染页面调用，状态更新之后调用
+      render() {
+        return (
+          <div>
+            <h1 style={{ opacity: this.state.opacity }}>我是React</h1>
+            <button onClick={this.death}>不活了</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Life />, document.querySelector('.text'))
+  </script>
+</html>

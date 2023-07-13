@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/vue包/vue.js"></script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+
+        .root {
+            height: 200px;
+            background-color: red;
+        }
+
+        .box1 {
+            padding: 5px;
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            padding: 5px;
+            background-color: orange;
+        }
+
+        .hh {
+            padding: 5px;
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .row {
+            background-color: gray;
+            height: 200px;
+            overflow: auto;
+        }
+
+        li {
+            height: 80px;
+        }
+    </style>
+</head>
+<!-- 
+    总结：
+        阻止默认跳转的点击事件 @click.prevent ，.prevent就是阻止默认跳转
+
+        Vue的事件修饰符：
+            .prevent 阻止默认事件
+            .stop 阻止事件冒泡(点击一个按钮就会执行大容器的事件)
+                1.使用方法：阻止谁冒泡就要给他绑定
+            .once 事件只会执行一次
+            .capture 使用事件的捕获模式
+            .self 就是只有点击自己的时候才会执行所执行的函数\
+            .passive 先执行动作，再执行绑定的事件
+ -->
+
+<body>
+    <!-- 当你只点击链接他将会执行函数再跳转,不想跳转网页的话,所以有一个方法阻止 prevent -->
+    <div class="root">
+        <a href="www.baidu.com" @click.prevent="show">点我跳转到百度</a>
+        <br>
+        <button @click.stop="showBnt">{{msg}}</button>
+        <br>
+        <button @click.once="showBnt2">{{msg}}1</button>
+        <br>
+        <div class="box1" @click.capture="showmsg(1)">
+            div1
+            <div class="box2" @click="showmsg(2)">
+                div2
+            </div>
+        </div>
+        <div @click.self="showDiv" class="hh">
+            <button @click="showDiv2">{{msg}}</button>
+        </div>
+        <div class="row">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    new Vue({
+        el: '.root',
+        data: {
+            msg: '点我提示消息'
+        },
+        methods: {
+            show() {
+                alert("将要跳转到百度")
+            },
+            showDiv() {
+                alert("点击了div")
+            },
+            showBnt() {
+                alert("点击了按钮")
+            },
+            showBnt2() {
+                alert("我只会执行一次哦")
+            },
+            showmsg(msg) {
+                console.log(msg)
+            },
+            showDiv2(e) {
+                console.log(e.target)
+            },
+
+        }
+    })
+</script>
+
+</html>

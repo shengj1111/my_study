@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <!-- React核心包 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 操作dom的包 -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- babel,转化语法 -->
+  <script src="../js/babel.min.js"></script>
+  <!-- 一定要写type="text/babel" -->
+  <script type="text/babel">
+    const title = 'title'
+    const content = '你好啊'
+    // 小括号就相当于vue中的template
+    // 虚拟DOM不能加引号
+    const VDOM = (
+      <div>
+        <h1 className={title}>
+          <span style={{ color: 'red', fontSize: '50px' }}>{content}</span>
+        </h1>
+      </div>
+    )
+    ReactDOM.render(VDOM, document.querySelector('.text'))
+    /* jsx语法
+      (1).class要写成className
+      (2).根元素只能有一个
+      (3).混入js的时候需要用{}包起来
+      (4).写style样式的时候需要写{{键：值}}
+      (5).标签名只能是小写，组件就是大驼峰写法
+    */
+  </script>
+</html>

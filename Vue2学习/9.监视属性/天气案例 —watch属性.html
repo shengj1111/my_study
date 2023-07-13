@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/vue包/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        监视属性
+            1.watch 
+                (1).两种写法 直接在Vue里面写 第二种就是 vm.$watch('监视的属性'，{函数})
+            2.监视属性中的属性必须存在才能监视
+     -->
+    <div class="root">
+        <h2>天气很{{info}}</h2>
+        <!-- 当函数执行语句很短时，可以直接在插值语法里面写 -->
+        <button @click="changeWeather">切换</button>
+        <button @click="isHot = !isHot">切换</button>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '.root',
+        data: {
+            isHot: true
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot
+            }
+        },
+        computed: {
+            info() {
+                return this.isHot ? "炎热" : "凉爽"
+            }
+        },
+        //第一种写法
+             watch:{     //监视属性关键字
+                 isHot:{
+                     //immediate当他等于true 他第一次就会调用handler,等于false就第一次不调用
+                     immediate:true,
+                     //handler什么时候被调用？ 当isHot发生改变的时候就调用
+                     handler(newValue,oldValue){
+                         console.log("isHot发生改变",newValue,oldValue)
+                     }
+                 }
+     
+             }
+    })
+    //第二种写法
+/*     vm.$watch('isHot', {
+        immediate: true,
+        //handler什么时候被调用？ 当isHot发生改变的时候就调用
+        handler(newValue, oldValue) {
+            console.log("isHot发生改变", newValue, oldValue)
+        }
+    }) */
+</script>
+
+</html>

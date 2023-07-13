@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/vue包/vue.js"></script>
+  <script src="/vue包/dayjs.min.js"></script>
+</head>
+
+<body>
+  <div class="root">
+    <h2>当前的日期是{{times}}</h2>
+    <h2>当前的日期是{{getTime()}}</h2>
+    <h2>当前的日期是{{time | fmtTime}}</h2>
+  </div>
+</body>
+<script>
+  //全局过滤器
+  Vue.filters('fmtTime',function(val){
+        return dayjs(val).format("YYYY年MM月DD日 HH:mm:ss")
+      })
+  new Vue({
+    el: '.root',
+    data: {
+      time: Date.now(),
+
+
+    },
+    computed: {
+      times() {
+        var time = Date.now() //当前时间
+        return dayjs(time).format("YYYY-MM-DD HH-mm--ss")
+      }
+    },
+    methods: {
+      getTime() {
+        var time = Date.now() //当前时间
+        return dayjs(time).format("YYYY MM DD HH:mm:ss")
+      },
+     
+    },
+    filters: {
+      // 这是局部过滤器
+      fmtTime(val,str ="YYYY MM DD HH:mm:ss" ){
+        return dayjs(val).format("YYYY年MM月DD日 HH:mm:ss")
+      }
+    }
+  })
+</script>
+
+</html>

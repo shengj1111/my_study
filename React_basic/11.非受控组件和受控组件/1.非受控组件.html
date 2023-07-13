@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 非受控组件就是通过回调才会执行的组件
+    // 即用即调
+
+    class Login extends React.Component {
+      formInfo = event => {
+        // 阻止默认行为
+        event.preventDefault()
+        const { userName, password } = this
+        alert(`账号是：${userName.value},密码是${password.value}`)
+      }
+
+      render() {
+        return (
+          <form action='https:www.baidu.com' method='get' onSubmit={this.formInfo}>
+            <input ref={c => (this.userName = c)} type='text' name='userName' id='' />
+            <input ref={c => (this.password = c)} type='text' name='password' />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(<Login />, document.querySelector('.text'))
+  </script>
+</html>

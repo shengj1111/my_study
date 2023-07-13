@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/vue包/vue.js"></script>
+</head>
+<body>
+  <div class="root">
+    <!-- v-show 只是使用样式的display:none -->
+    <h2 v-show="false">{{msg}}</h2>
+    <h2 v-show="true">{{msg}}</h2>
+
+    <!-- v-if 就是直接删除这个结构 -->
+    <h2 v-if="true">{{msg}}</h2>
+
+    <!-- v-if 这些原理和 if else 一样，必须要写在一起，不能分开 -->
+    <div>
+      <h2>当前n的值为{{n}}</h2>
+      <button @click="n++">点我n++</button>
+      <div v-if="n == 1">aaa</div>
+      <div v-else-if="n == 2">bbb</div>
+      <div v-else="">ccc</div>
+    </div>
+  </div>
+
+</body>
+<script>
+  const vm = new Vue({
+    el:'.root',
+    data:{
+      msg:'显示',
+      n:0
+    }
+  })
+</script>
+</html>

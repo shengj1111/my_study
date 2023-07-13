@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    class MyComponent extends React.Component {
+      showData = () => {
+        alert(this.refs.input1.value)
+      }
+      aa = () => {
+        alert(this.refs.input.value)
+      }
+      render() {
+        return (
+          <div>
+            <input type='text' ref='input1' placeholder='点击按钮显示数据' /> &nbsp;
+            <button onClick={this.showData}>点我提示左侧数据</button> &nbsp;
+            <input
+              type='text'
+              ref='input'
+              placeholder='失去焦点显示数据'
+              onBlur={this.aa}
+            />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponent />, document.querySelector('.text'))
+  </script>
+</html>

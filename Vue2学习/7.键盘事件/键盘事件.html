@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/vue包/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        键盘事件
+            1. 关键词是 @keyup 和 @keydown
+            2.键盘绑定的函数
+                (1). .enter 按下回车执行函数
+                (2). .delete 按下删除执行函数
+                (3). .esc 按下 Esc 执行函数
+                (4). .tab 按下 tab 执行函数
+                (4). .up . down .left .right 按下 上下左右键 执行函数
+            3.系统的 ctrl shift windows alt 键只能配合 @keyup 来使用
+
+            4. 自定义键名方法
+                Vue.config.keyCodes. 自定义键名 = 键码
+            5.绑定函数可以连续使用
+                @keydown.enter.x="show"
+    -->
+    <div class="root" >
+        <!-- 按下回车才会打印 -->
+        <input type="text" placeholder="点击回车就输出" @keydown.enter="show">
+        <br><br>
+        <!-- 按下删除或者backspace才会执行函数 -->
+        <input type="text" placeholder="点击删除键就输出" @keydown.delete="show"><br><br>
+        <!-- 按下tab才会执行函数 -->
+        <input type="text" placeholder="点击tab键就输出" @keydown.tab="show"><br><br>
+        <!-- 按下esc才会执行函数 -->
+        <input type="text" placeholder="点击esc键就输出" @keydown.esc="show"><br><br>
+        <!-- 组合键的使用 
+            点击CTRL + x 才会执行函数
+        -->
+        <input type="text" placeholder="点击CTRL + x 就输出" @keyup.ctrl.x="show"><br><br>
+
+
+    </div>
+</body>
+<script>
+
+    new Vue({
+        el:'.root',
+        data:{
+            
+        },
+        methods:{
+            show(e){
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+</html>

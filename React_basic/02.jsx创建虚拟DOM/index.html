@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <!-- React核心包 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 操作dom的包 -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- babel,转化语法 -->
+  <script src="../js/babel.min.js"></script>
+  <!-- 一定要写type="text/babel" -->
+  <script type="text/babel">
+    // 小括号就相当于vue中的template
+    // 虚拟DOM不能加引号
+    const VDOM = (
+      <h1>
+        <span>你好啊</span>
+      </h1>
+    )
+    // ReactDOM就是React创建的DOM ,
+    // render就是将虚拟DOM渲染到页面上
+    ReactDOM.render(VDOM, document.querySelector('.text'))
+  </script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <!-- React核心包 -->
+  <script src="../js/17/react.development.js"></script>
+  <!-- 操作dom的包 -->
+  <script src="../js/17/react-dom.development.js"></script>
+  <!-- babel,转化语法 -->
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    class Count extends React.Component {
+      // 构造器
+      constructor(props) {
+        console.log('count---constructor')
+        super(props)
+        this.state = { count: 0 }
+      }
+      // 挂载完毕
+      componentDidMount() {
+        console.log('count---conponentDidMount')
+      }
+      // state的值取决于props，才会用它，不常用
+      static getDerivedStateFromProps(props, state) {
+        console.log('getDerivedStateFromProps')
+        return props
+      }
+      // 更新之前获取快照
+      getSnapshotBeforeUpdate() {
+        console.log('getSnapshotBeforeUpdate')
+        return null
+      }
+      // 是否更新拦截器（返回值是true or false）
+      shouldComponentUpdate() {
+        console.log('count---shouldComponentUpdate')
+        return true
+      }
+      // 组件更新完毕
+      componentDidUpdate(preProps, preState, snapshotValue) {
+        console.log('count---componentDidUpdate', preProps, preState, snapshotValue)
+      }
+
+      // 求和加1
+      add = () => {
+        const { count } = this.state
+        this.setState({ count: count + 1 })
+      }
+      // 初始化组件
+      render() {
+        console.log('count---render')
+        const { count } = this.state
+        return (
+          <div>
+            <h2>当前求和为{count}</h2>
+            <button onClick={this.add}>点我加1</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Count />, document.querySelector('.text'))
+  </script>
+</html>

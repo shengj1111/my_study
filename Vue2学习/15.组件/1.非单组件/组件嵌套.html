@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/0.js/vue.js"></script>
+</head>
+<!-- 
+  创建组件两种写法：
+    1.const 最初组件名字 = Vue.extend({
+        `
+      })
+    2. const 最初组件名字 = {
+
+    }
+  组件名定义注意事项：
+  1.可以用：
+    (1).全小写 例如 school
+    (2).大驼峰峰命名法 SchoolStudent  这种只能在脚手架环境中运行
+  
+  组件使用方法
+  1.<school></school> 
+  2</school>    这种方法有多个就只显示一个
+ -->
+<body>
+  <div class="root">
+    <app></app>
+  </div>
+</body>
+<script>
+  //注册学生组件
+  const student = {
+    template: `
+    <div>
+      <h3>{{name}}</h3>  
+      <h3>{{stuId}}</h3>  
+      <h3>{{college}}</h3>  
+    </div>
+    `,
+    data() {
+      return {
+        name: '盛继',
+        stuId: 21395135,
+        college: "应用技术学研"
+      }
+    },
+  }
+
+  //注册school组件
+  const school = Vue.extend({
+    template: `
+    <div>
+      <h2>{{name}}</h2>  
+      <h2>{{address}}</h2>  
+      <student></student>
+    </div>
+    `,
+    data() {
+      return {
+        name: '武汉工商学院',
+        address: '武汉'
+      }
+    },
+    components: {
+      student
+    }
+  })
+
+  const hello = {
+    template: `<h2>你好啊</h2>`,
+
+  }
+  //注册App组件
+  const app = Vue.extend({
+    template: `
+      <div>
+      <hello></hello>
+      <school></school>  
+      </div>
+    `,
+    data() {
+      return {
+
+      }
+    },
+    components: {
+      school,
+      hello
+    }
+  })
+
+  new Vue({
+    el: '.root',
+    data: {
+
+    },
+    components: {
+      app
+    },
+  })
+</script>
+
+</html>

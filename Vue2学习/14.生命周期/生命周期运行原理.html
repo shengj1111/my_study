@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="/vue包/vue.js"></script>
+</head>
+
+<body>
+	<div class="root">
+		<h2>当前n值是{{n}}</h2>
+		<button @click="add">点我n++</button>
+	</div>
+</body>
+<script>
+	new Vue({
+		el: '.root',
+		data: {
+			n: 1
+		},
+		methods: {
+			add() {
+				this.n++;
+			}
+		},
+		//生命周期运行流程
+		/* 初始化数据，但数据代理还没开始 */
+
+		beforeCreate() {  //创建Vue 实例之前
+			console.log("beforeCreate");
+		},
+
+		/* 初始化数据监测、数据代理 */
+
+		created() {   //创建好了Vue实例
+			console.log("created");
+		},
+
+		/* 在挂载之前，所有对DOM操作都不生效 */
+
+		beforeMount() {   //将要挂载
+			console.log("beforeMount");
+		},
+		/*  开始挂载，数据开始生效 */
+		mounted() {   //挂载完毕
+			//可以在这里面写定时器、发送网络请求、订阅消息、绑定自定义事件等操作
+			console.log("mounted");
+		},
+
+		//当数据发生改变之前  //数据会发生改变，但是页面上的不会呈现最新数据
+		beforeUpdate() {
+			console.log("beforeUpdate");
+		},
+		//页面呈现最新数据
+		updated() {
+			console.log("updated");
+		},
+		//在销毁VM之前，这里面只需要关闭定时器、取消消息订阅、解绑自定义事件等功能，最好不要对数据进行更改，更改也不会生效
+		beforeDestroy() {
+			console.log("beforeDestroy");
+		},
+		//销毁VM
+		destroyed() {
+			console.log("destroyed");
+		},
+	})
+</script>
+
+</html>

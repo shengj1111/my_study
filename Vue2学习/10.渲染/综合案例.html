@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/vue包/vue.js"></script>
+</head>
+
+<body>
+  <div class="root">
+    <button @click="persons[0].age++"> 点击按钮，周冬雨年龄加1</button><br>
+    <button @click="updateName">将周冬雨名字改成老刘</button><br>
+    <button @click="addSex">添加性别</button><br>
+    <button @click="addHobby">添加爱好</button><br>
+    <button @click="addPerson">添加人</button><br>
+    <button @click="updateHobby">抽烟改成开车</button><br>
+
+    <hr>
+    <ul>
+      <li v-for="p in persons" :key="p.id">
+        {{p.name}} -- {{p.age}}
+      </li>
+    </ul>
+    <hr>
+    <h2 v-if="my.sex">性别：{{my.sex}}</h2>
+    <ul>
+      <li v-for="(h,index) in my" :key="index">
+        {{h}}
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+  const vm = new Vue({
+    el: '.root',
+    data: {
+      persons: [
+        { id: '001', name: '周冬雨', age: 18 },
+        { id: '002', name: '周迎晨', age: 19 },
+        { id: '003', name: '张杰', age: 20 },
+        { id: '004', name: '马冬梅', age: 20 }
+      ],
+      my: {
+        name: 'jack',
+        hobby: ['抽烟', '喝酒', '烫头'],
+      },
+    },
+    methods: {
+      updateName() {
+        this.persons[0].name = '老刘'
+      },
+      updateHobby() {
+        this.$set(this.my.hobby, 0, '开车')
+      },
+      addSex() {
+        this.$set(this.my, 'sex', '男')
+      },
+      addHobby() {
+        this.my.hobby.push('打游戏')
+      },
+      addPerson() {
+        this.persons.unshift({ id: '005', name: '马老师', age: 50 })
+      }
+    },
+  })
+</script>
+
+</html>

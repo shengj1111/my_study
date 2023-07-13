@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 受控组件类似于Vue的v-model，是将数据保存在state中，减少ref
+
+    class Login extends React.Component {
+      state = {
+        username: '',
+        password: '',
+      }
+
+      save = dataType => {
+        return event => {
+          this.setState({ [dataType]: event.target.value })
+        }
+      }
+
+      alertInfo = e => {
+        // 阻止默认行为
+        e.preventDefault()
+        const { username, password } = this.state
+        alert(`账号是${username}，密码是${password}`)
+      }
+
+      render() {
+        return (
+          <form action='https:www.baidu.com' method='get' onSubmit={this.alertInfo}>
+            <input type='text' name='userName' onChange={this.save('username')} />
+            <input type='text' name='password' onChange={this.save('password')} />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(<Login />, document.querySelector('.text'))
+  </script>
+</html>

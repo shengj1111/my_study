@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+  </head>
+  <body>
+    <div class="text"></div>
+  </body>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 创建类组件
+    class MyComponent extends React.Component {
+      render() {
+        // this中有很多方法
+        console.log(this)
+        return <h1>这是类组件，适用于有交互</h1>
+      }
+    }
+    /* 
+      放组件标签的时候React自动帮你new 出来了实例
+    */
+    ReactDOM.render(<MyComponent />, document.querySelector('.text'))
+  </script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title></title>
+    <script src="js/vue.js"></script>
+</head>
+<!-- 
+    初识vue总结
+        1.想要Vue工作，就必须要创建一个Vue示例
+        2.Vue与容器一一对应
+        3.{{}}里面也可以放js代码
+            (1). {{}} 这个叫插值语法
+        4.data放的数据改变，容器的数据也会发生改变
+ -->
+<body>
+    <div>
+        <h1 id="root">
+            {{message}}
+        </h1>
+    </div>
+</body>
+
+<script>
+    /*创建一个vue，并且将它和标签绑定  //  可以使用类选择器和id选择器 */
+    var app = new Vue({
+        // el相当于css选择器，通过el与对应的容器建立关系 
+        el:'#root',
+        /* data 相当于一个对象，可以将对应的值传递到对容器 */
+        data:{
+            name:'app',
+            message:'hello Vue'
+        }
+    })
+</script>
+
+</html>

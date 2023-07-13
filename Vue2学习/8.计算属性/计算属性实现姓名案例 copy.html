@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性实现姓名案例</title>
+    <script src="/vue包/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        计算属性 computed
+            1.要用到属性不存在就用已有的属性进行计算
+            2.原理就是用Object.defineProperty来实现的
+            3.当有多个地方调用到fullName ，他就会执行一次，并将这个数据保存到缓存里面
+
+     -->
+    <div class="root">
+        <input type="text" v-model:value="firstName"><br><br>
+        <input type="text" v-model="lastName"><br><br>
+        <span>{{fullName}}</span>
+    </div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el:'.root',
+        data:{
+            firstName:"张",
+            lastName:"三"
+        },
+        computed:{
+            fullName:{
+                //get 有啥作用呢 当有人读取fullName的时候，get就会被调用，且返回值作为fullNamw的值
+                //get 什么时候被调用 1.当数据发生改变的时候 2.初次读取fullName 的时候
+                get(){
+                    console.log("被调用了")
+                    return this.firstName + '-' + this.lastName
+                },
+                //set 什么时候被调用 1.当数值发生改变的时候被调用
+                set(value){
+                    const arr = value.split('-')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        }
+    })
+</script>
+</html>

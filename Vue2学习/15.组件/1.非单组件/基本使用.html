@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/0.js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    1.创建组件：
+      (1).const 最初组件名字 = Vue.extend({
+        data(){
+          return {
+
+          }
+        },
+        template:`
+          结构
+        `
+      })
+  2.注册组件
+      (1)components: {
+          最终组件名：最初组件名
+        }
+      例子：
+          .new Vue({
+            el: '.root',
+            data: {
+
+            },
+            //注册组件
+            components: {
+              school: school,
+              student:student
+            }
+          })
+  3.使用组件
+      <最终组件名字></最终组件名字>
+      例子：
+          <school></school>
+   -->
+  <div class="root">
+    <school></school>
+    <hr>
+    <student></student>
+  </div>
+</body>
+<script>
+  //创建组件
+  const school = Vue.extend({
+    data() {
+      return {
+        schoolName: '武汉工商学院',
+        address: '武汉洪山'
+      }
+    },
+    template: `
+      <div>
+      <h2>学校名称：{{schoolName}}</h2>  
+      <h2>学校名称：{{address}}</h2>  
+      </div>
+    `
+  })
+
+  const student = Vue.extend({
+    data() {
+      return {
+        stuName: '盛继',
+        id: 21395135,
+        college: '应用技术学院'
+      }
+    },
+    template: `
+    <div>
+    <h2>学生姓名：{{stuName}}</h2>  
+    <h2>学生学号：{{id}}</h2>  
+    <h2>学生学号：{{college}}</h2>  
+    </div>
+    `
+  })
+  new Vue({
+    el: '.root',
+    data: {
+
+    },
+    //注册组件
+    components: {
+      school: school,
+      student: student
+    }
+  })
+</script>
+
+</html>

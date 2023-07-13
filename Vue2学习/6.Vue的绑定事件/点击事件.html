@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/vue包/vue.js"></script>
+</head>
+<!-- 
+    总结：
+        Vue中的点击事件是 v:on-click, 可以简写为 @click
+
+ -->
+<body>
+    <div class="root">
+        <button @click="showHello">{{msg}}</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'.root',
+        data:{
+            msg:'点我提示信息',
+            hello:'你好啊'
+        },
+        methods:{
+            showHello(){
+                alert("你好啊")
+            }
+        }
+    })
+</script>
+
+</html>
