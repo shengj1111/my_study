@@ -1,0 +1,9 @@
+.box {
+  margin: 0 auto;
+  width: 1000px;
+  text-align: center;
+  font-size: 30px;
+}
+.box button {
+  margin-left: 10px;
+}
